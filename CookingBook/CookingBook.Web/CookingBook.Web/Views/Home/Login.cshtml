@@ -1,0 +1,95 @@
+﻿
+@{    
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<div ng-controller="loginController">
+
+
+    <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-center" style="display:table-cell; background-color:#f7f2f6; height:100px; vertical-align:middle; ">
+        <img src="~/assets/img/aawLogoLogin2.png" />
+    </div>
+
+    <div class="col-sm-12">
+        <div class="visible-md-block col-sm-2">
+        </div>
+        <div class="visible-lg-block col-sm-3">
+        </div>
+        <div class="visible-sm-block col-sm-3">
+        </div>
+        <div class="visible-xs-block col-sm-3">
+        </div>
+        <form name="frmLogin" role="form" novalidate>
+            <div style="margin-top:70px;" class="col-sm-6 col-md-8 col-lg-6">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="background-color:#f7f2f6;  height:392px;">
+                        <div class="row text-center " style="background-color:#ac193d; height:58px; color:white; font-size:24px; ">Sign In</div>
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top: 40px;">
+                            <div>
+                                <span class="input-icon">
+                                    <input type="text" class="form-control" style="min-height:44px; font-size: 16px;" name="username" ng-model="userName" placeholder="" required />
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </span>
+                                <span class="text-danger" ng-show="(frmLogin.username.$invalid && !frmLogin.username.$pristine)">Required</span>
+                            </div>
+                            <div>
+                                <span class="input-icon" style="margin-top: 40px;">
+                                    <input type="password" class="form-control" style="min-height:44px; font-size: 16px;" name="password" ng-model="password" placeholder="" required />
+                                    <i class="glyphicon glyphicon-lock"></i>
+                                </span>
+                                <span class="text-danger" ng-show="(frmLogin.password.$invalid && !frmLogin.password.$pristine)">Required</span>
+                            </div>
+
+                            <div class="loginbox-textbox">
+                                <span class="text-danger" ng-show="isNotValid">{{errorMessage}}</span>
+                            </div>
+
+                            <div style="margin-top: 40px;">
+                                <label class="danger">{{systemMessage}}</label>
+                                <input type="button" style="text-transform:uppercase; min-height:44px; font-size: 18px; color:white; background-color:#CA3D3D; border-color:#CA3D3D;" class="btn btn-primary btn-block" ng-click="login()" value="Login">
+                            </div>
+                            <div>
+                                <div class="pull-left">@Html.ActionLink("ForgotPassword", "ForgotPassword", "Home")</div>
+                                <div class="pull-right">@Html.ActionLink("Signup", "SignUp", "Account")</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="visible-md-block bg-white  visible-lg-block">
+
+                        <div class="row">
+                            <div class="text-center " style="color:#ac193d; margin-top: 78px; font-size: 30px;">Welcome</div>
+                            <div class="text-center " style="margin-top: 40px; color:#ac193d;  font-size: 30px;">to</div>
+                            <div class="text-center" style="margin-top: 40px;">
+                                <img src="~/assets/img/aawLogoLogin2.png" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="visible-md-block col-sm-2">
+        </div>
+        <div class="visible-lg-block col-sm-3">
+        </div>
+        <div class="visible-sm-block col-sm-3">
+        </div>
+        <div class="visible-xs-block col-sm-3">
+        </div>
+    </div>
+    <div class="text-center">
+        <label style="margin-top: 20px;">&#169; ActionsAtWork @DateTime.Now.Year</label>
+    </div>
+
+</div>
+
+
+@section scripts
+    {
+    <script src="~/Views/Home/Login.js"></script>
+}

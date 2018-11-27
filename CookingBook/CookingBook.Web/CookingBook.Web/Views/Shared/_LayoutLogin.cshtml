@@ -1,0 +1,72 @@
+﻿
+@{
+    Layout = null;    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @RenderSection("styles", required: false)
+    <title>FAW Time Entry</title>
+    <meta name="description" content="Login" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="@Url.Content("~/assets/img/aawfavicon.png")" type="image/x-icon">
+
+    <link href="@Url.Content("~/assets/css/bootstrap.min.css")" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="@Url.Content("~/")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/font-awesome.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/weather-icons.min.css")" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300" rel="stylesheet" />
+    <link id="beyond-link" href="@Url.Content("~/assets/css/beyond.css")" rel="stylesheet" />
+
+    <link href="@Url.Content("~/assets/css/skins/azure.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/assets/css/aaw.css")" rel="stylesheet" />
+
+    <link href="@Url.Content("~/assets/css/typicons.min.css")" rel="stylesheet" />
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />
+
+
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="@Url.Content("~/assets/js/skins.js")"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-cookies.min.js"></script>
+
+
+
+</head>
+<body>
+    <div ng-app="cookingBookApp">
+        @RenderBody()
+    </div>
+
+
+    <!--Basic Scripts-->
+    @*<script src="@Url.Content("~/assets/js/jquery.min.js")"></script>*@
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="@Url.Content("~/assets/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/assets/js/slimscroll/jquery.slimscroll.min.js")"></script>
+
+    <!--Beyond Scripts-->
+    <script src="@Url.Content("~/assets/js/beyond.js")"></script>
+    
+
+    <script src="@Url.Content("~/Scripts/CookingBookApp.js")"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+    <!--Page Related Scripts-->
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+            var rootDir = "@Url.Content("~/")";
+    </script>
+</body>
+</html>

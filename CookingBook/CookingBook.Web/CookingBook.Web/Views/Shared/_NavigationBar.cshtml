@@ -1,0 +1,60 @@
+﻿<!-- Navbar -->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="navbar-container">
+            <!-- Navbar Barnd -->
+            <div class="navbar-header pull-left no-padding no-margin">
+                <a href="/Home/Main" class="navbar-brand no-padding no-margin bg-white">
+                    <small>
+                        <img src="@Url.Content("~/assets/img/aawlogoNavigation.jpg")" alt="Actions At Work" />
+                    </small>
+                </a>
+            </div>
+            <!-- /Navbar Barnd -->
+            <!-- Sidebar Collapse -->
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="collapse-icon fa fa-bars"></i>
+            </div>
+            <div class="navbar-header pull-right">
+                <div class="navbar-account">
+                    <ul class="account-area">
+                        <li>
+                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                <section>
+                                    <h2><span class="profile"><span>{{currentUserName}}</span></span></h2>
+                                    <p><span>Company: {{activeCompany.Name}}</span></p>
+                                </section>
+
+                            </a>
+                            <!--Login Area Dropdown-->
+                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                <li class="company" title="Switch to this company" data-ng-repeat="company in listUserCompany"><p ng-click="switchCompany(company.Guid)">{{company.Name}}</p></li>
+
+                                <!--Avatar Area-->
+                                <li class="dropdown-container">
+                                    <a href="@Url.Action("Profile","User")">Profile</a>
+                                    @*<a href="#" class="pull-right">Setting</a>*@
+                                </li>
+                                <!--/Theme Selector Area-->
+                                <li class="dropdown-container" ng-show="currentActiveUser.IsImpersonating">
+                                    <a href="javascript:void(0)" ng-click="endImpersonation()">
+                                        End Impersonation
+                                    </a>
+                                </li>
+                                <li class="dropdown-footer">
+                                    @*<input type="button" ng-click="logOut()" value="Log Out"/>*@
+                                    <a href="javascript:void(0)" ng-click="logOut()">
+                                        Signout
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <!--/Login Area Dropdown-->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Navbar -->

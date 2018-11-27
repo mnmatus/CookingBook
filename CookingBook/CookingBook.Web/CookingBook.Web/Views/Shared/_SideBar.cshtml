@@ -1,0 +1,48 @@
+﻿
+<div class="page-sidebar" id="sidebar">
+    <ul class="nav sidebar-menu">
+        <li>
+            <a href="@Url.Action("TimeEntry","Home")">
+                <i class="margin-right-5">
+                    <img src="~/assets/icons/iconDashBoard.png" />
+                </i>
+                <span class="menu-text">
+                    Time Entry
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="menu-dropdown">
+                <i>
+                    <img src="~/assets/icons/iconDevelopment.png" />
+                </i>
+                <span class="menu-text">Management</span>
+                <i class="menu-expand"></i>
+            </a>
+            <ul class="submenu">
+                <li>
+                    <a href="@Url.Action("Store","Management")">
+                        <span class="menu-text">Store</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Client","Management")">
+                        <span class="menu-text">Client</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ServiceProvider","Management")">
+                        <span class="menu-text">Service Provider</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="@Url.Action("TimeEntry","Report")">
+                <span class="menu-text">
+                    Reports
+                </span>
+            </a>
+        </li>
+    </ul>
+</div>

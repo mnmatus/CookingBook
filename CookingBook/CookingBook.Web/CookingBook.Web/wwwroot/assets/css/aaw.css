@@ -1,0 +1,16 @@
+﻿.aawloginlogobox {
+  width: 300px !important;
+  height: 70px !important;
+  padding: 1px;  
+  -webkit-box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.1); 
+   margin-top: 5px;
+  background-image: url(../../assets/img/aawLogoLogin.png);
+	background-repeat:no-repeat;
+    background-position: center;
+	background-size: contain;
+	
+	text-decoration:none; 	
+	border-collapse:collapse;
+}
