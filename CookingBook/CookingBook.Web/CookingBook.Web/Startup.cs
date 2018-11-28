@@ -10,13 +10,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using CookingBook.Application.IRepository;
-using CookingBook.Application.Repository;
-using CookingBook.Application.Helpers;
+using CookingBook.Web.IRepository;
+using CookingBook.Web.Repository;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using CookingBook.Web.Models;
+using CookingBook.Web.Models.DB;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using CookingBook.Web.Mapping;
 //http://jasonwatmore.com/post/2018/08/14/aspnet-core-21-jwt-authentication-tutorial-with-example-api
+//https://www.c-sharpcorner.com/article/jwt-json-web-token-authentication-in-asp-net-core/
 namespace CookingBook.Web
 {
     public class Startup
@@ -31,38 +36,37 @@ namespace CookingBook.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(); //added
+            services.AddDbContext<CookingBookContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CookingBookDatabase")));
 
+            var issuer = Configuration["Jwt:Issuer"];
+            var key = Configuration["Jwt:Key"];
+
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)                
+     .AddJwtBearer(options =>
+     {
+         options.TokenValidationParameters = new TokenValidationParameters
+         {
+             ValidateIssuer = true,
+             ValidateAudience = true,
+             ValidateLifetime = true,
+             ValidateIssuerSigningKey = true,
+             ValidIssuer = issuer,
+             ValidAudience = issuer,
+             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+         };
+     });
+            Mapper.Initialize(cfg => cfg.AddProfile<MappingProfile>());
+
+            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            //added            
-            // configure jwt authentication            
-            var key = Encoding.ASCII.GetBytes("TheSecretKey");
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-
-
-
 
 
 
             services.AddTransient<IUserRepository, UserRepository>();
-            
+            services.AddTransient<IRecipeRepository, RecipeRepository>();
+            services.AddTransient<IIngredientRepository, IngredientRepository>();
+
 
 
         }
@@ -79,18 +83,16 @@ namespace CookingBook.Web
             {
                 app.UseHsts();
             }
-           
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials());
+            app.UseHttpsRedirection();
+            
+
+
 
             app.UseAuthentication();
+            app.UseStaticFiles();
 
+            
 
             app.UseMvc(routes =>
             {
@@ -98,7 +100,7 @@ namespace CookingBook.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            
+
         }
     }
 }

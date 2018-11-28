@@ -12,9 +12,9 @@ cookingBookApp.factory('authInterceptorService', ['$q', '$location', '$window', 
             return config;
         }
         var _responseError = function (rejection) {
-
+            debugger;
             if (rejection.status === 401) {
-                $window.location.href = rootDir + 'Home/Index';
+                $window.location.href = rootDir + 'Home/Login';
 
             }
             return $q.reject(rejection);
@@ -68,7 +68,7 @@ cookingBookApp.controller('applicationController', function ($rootScope, $scope,
     $scope.getActiveUser = function () {
         $http({
             method: 'GET',
-            url: rootDir + "api/user/getactiveuser",
+            url: "/api/user/getactiveuser",
         }).then(function (response) {
             $scope.currentActiveUser = response.data;
         }).catch(function (response) {

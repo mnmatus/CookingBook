@@ -4,12 +4,70 @@
     Layout = "~/Views/Shared/_LayoutMaster.cshtml";
 }
 
-<h2>Index</h2>
+<div class="page-content">
+    <div class="page-breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                @Html.ActionLink("Home", "Index", "Home")
+            </li>
+        </ul>
+    </div>
 
+    <div class="page-body" ng-controller="indexController">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="widget">
+                    <div class="widget-header ">
+                        <span class="widget-caption">Recipe's Ingredient checklist</span>
+                    </div>
+                    <div class="widget-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <select class="form-control" ng-change="recipeSelected()" id="recipeId" name="recipeId" required ng-model="recipeId" ng-options="i.id as i.name for i in listUserRecipe">
+                                        <option value="">Select Recipe</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Ingredient Name
+                                    </th>
+                                    <th>
+                                        Checked?
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="ing in listIngredients">
+                                    <td>
+                                        {{ing.name}} 
+                                    </td>
+
+                                    <td>
+                                        <label>
+                                            <input class="checkbox-slider slider-icon yesno" ng-click="toggleIngredientSelection($event,ing.id)" type="checkbox" ng-model="ing.isChecked">
+                                            <span class="text"></span>
+                                        </label>                                        
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @section scripts
     {
-        <script src="~/Views/Home/Index.js"></script>
-    }
+    <script src="~/Views/Home/Index.js"></script>
+}
 

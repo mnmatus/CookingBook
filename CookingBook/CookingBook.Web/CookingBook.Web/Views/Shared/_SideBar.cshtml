@@ -2,47 +2,27 @@
 <div class="page-sidebar" id="sidebar">
     <ul class="nav sidebar-menu">
         <li>
-            <a href="@Url.Action("TimeEntry","Home")">
-                <i class="margin-right-5">
-                    <img src="~/assets/icons/iconDashBoard.png" />
-                </i>
+            <a href="@Url.Action("Index","Home")">                
                 <span class="menu-text">
-                    Time Entry
+                    Cook A Dish
                 </span>
             </a>
-        </li>
+        </li>        
         <li>
             <a href="#" class="menu-dropdown">
-                <i>
+                @*<i>
                     <img src="~/assets/icons/iconDevelopment.png" />
-                </i>
+                </i>*@
                 <span class="menu-text">Management</span>
                 <i class="menu-expand"></i>
             </a>
             <ul class="submenu">
                 <li>
-                    <a href="@Url.Action("Store","Management")">
-                        <span class="menu-text">Store</span>
+                    <a href="@Url.Action("List","Recipe")">
+                        <span class="menu-text">Recipe</span>
                     </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Client","Management")">
-                        <span class="menu-text">Client</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="@Url.Action("ServiceProvider","Management")">
-                        <span class="menu-text">Service Provider</span>
-                    </a>
-                </li>
+                </li>               
             </ul>
-        </li>
-        <li>
-            <a href="@Url.Action("TimeEntry","Report")">
-                <span class="menu-text">
-                    Reports
-                </span>
-            </a>
-        </li>
+        </li>        
     </ul>
 </div>

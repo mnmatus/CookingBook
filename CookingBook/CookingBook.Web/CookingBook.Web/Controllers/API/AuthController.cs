@@ -4,20 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using CookingBook.Application.IRepository;
-
-
 using Microsoft.AspNetCore.Authorization;
-using CookingBook.Dto.Request;
-
-
+using CookingBook.Web.IRepository;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using CookingBook.Dto.Entity;
-using CookingBook.Application.Helpers;
+using CookingBook.Web.Dto;
+
 
 namespace CookingBook.Web.Controllers.API
 {
@@ -35,23 +30,19 @@ namespace CookingBook.Web.Controllers.API
         [Route("validate")]
         public IActionResult Validate()
         {
-            // var currentUser = ActiveUser;
-            //return Ok(currentUser);
+            var userName = User.Identity.Name;
+            if (!string.IsNullOrEmpty(userName))
+                return Ok("Valid");
+            else
+                return Ok("");            
+        }
 
-            var identity = User.Identity as ClaimsIdentity;
-            var userId = identity == null ? null : identity.Claims.FirstOrDefault(c => c.Type == "UserId");
-            if (userId == null)
-                return Ok("");
-            return Ok("Meron");
-            //var persona = Persona;
-            //if (persona.ActiveUser == null)
-            //    return Ok("");
-
-            //var user = _userRepository.GetUserById(Guid.Parse(userId.Value));
-            //var userName = user.UserName;
-
-
-            //return Ok(userName);
+        [Authorize]
+        [HttpPost]
+        [Route("validate2")]
+        public IActionResult Validate2()
+        {
+            return Ok();
         }
     }
 }
