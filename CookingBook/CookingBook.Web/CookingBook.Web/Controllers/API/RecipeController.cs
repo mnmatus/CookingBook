@@ -59,7 +59,7 @@ namespace CookingBook.Web.Controllers.API
         public IActionResult GetRecipesByName(string name = "")
         {
             var activeUser = ActiveUser;
-            var recipes = _recipeRepository.GetRecipesByName(activeUser.Id,name);
+            var recipes = _recipeRepository.GetRecipesByName(activeUser.Id, name);
             List<RecipeDto> response = new List<RecipeDto>();
             foreach (var recipe in recipes)
             {               

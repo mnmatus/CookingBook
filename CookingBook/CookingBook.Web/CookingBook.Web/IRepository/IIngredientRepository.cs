@@ -10,5 +10,7 @@ namespace CookingBook.Web.IRepository
     public interface IIngredientRepository
     {        
         bool UpdateIngredient(IngredientDto ingredient);
+
+        bool ResetIngredientSelection(int id);
     }
 }

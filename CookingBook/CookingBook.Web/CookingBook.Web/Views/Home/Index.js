@@ -46,5 +46,28 @@
         
     };
 
-    
+    $scope.resetSelection = function () {
+        if (!$scope.recipeId) {
+            return;
+        }
+        else {
+            $http({
+                method: 'POST',
+                url: '/api/ingredient/resetingredientsselection/' + $scope.recipeId,
+            }).then(function (response) {
+                //$scope.listIngredients = response.data.ingredients;
+                debugger;
+                angular.forEach($scope.listIngredients, function (value, key) {
+                    debugger;
+                    value.isChecked = false;
+                    //var index = $scope.listConsignment.findIndex(c => c.GuidId === value.GuidId);
+                    //$scope.listIngredients[index] = value;
+                });
+            }).catch(function () {
+                $('#modal-error').find('.modal-body').text('Unexpected error encountered');
+                $('#modal-error').modal('show');
+            });
+        };
+
+    };
 });

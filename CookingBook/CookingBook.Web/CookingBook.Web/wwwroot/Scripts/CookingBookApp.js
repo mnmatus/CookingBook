@@ -68,7 +68,7 @@ cookingBookApp.controller('applicationController', function ($rootScope, $scope,
         $http({
             method: 'GET',
             url: "/api/user/getactiveuser",
-        }).then(function (response) {
+        }).then(function (response) {            
             $scope.currentActiveUser = response.data;
         }).catch(function (response) {
             $scope.logOut();

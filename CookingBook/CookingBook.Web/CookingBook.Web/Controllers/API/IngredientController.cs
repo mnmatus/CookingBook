@@ -45,6 +45,13 @@ namespace CookingBook.Web.Controllers.API
             return Ok();
         }
 
+        [HttpPost("resetingredientsselection/{id}")]
+        public IActionResult ResetIngredientsSelection(int id)
+        {
+            var recipe = _ingredientRepository.ResetIngredientSelection(id);
+            return Ok();
+        }
+
 
     }
 }

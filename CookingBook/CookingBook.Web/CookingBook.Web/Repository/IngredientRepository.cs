@@ -24,5 +24,14 @@ namespace CookingBook.Web.Repository
             _context.SaveChanges();
             return true;
         }
+
+        public bool ResetIngredientSelection(int id)
+        {
+            var ingredients = _context.Ingredient.Where(i => i.RecipeId == id);
+            foreach (var ingredient in ingredients)
+                ingredient.IsChecked = false;            
+            _context.SaveChanges();            
+            return true;
+        }
     }
 }

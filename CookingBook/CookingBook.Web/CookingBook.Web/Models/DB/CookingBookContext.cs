@@ -13,7 +13,6 @@ namespace CookingBook.Web.Models.DB
         public CookingBookContext(DbContextOptions<CookingBookContext> options)
             : base(options)
         {
-         
         }
 
         public virtual DbSet<Ingredient> Ingredient { get; set; }
@@ -61,6 +60,11 @@ namespace CookingBook.Web.Models.DB
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.Property(e => e.FullName)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(20)
