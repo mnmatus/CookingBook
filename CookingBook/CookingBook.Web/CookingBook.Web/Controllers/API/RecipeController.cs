@@ -28,16 +28,12 @@ namespace CookingBook.Web.Controllers.API
     [Route("api/recipe")]
     [ApiController]
     public class RecipeController : BaseController
-    {
-        private readonly CookingBookContext _context;
-        private IConfiguration _config;
+    {        
         private IRecipeRepository _recipeRepository;
         private readonly IMapper _mapper;
         private IUserRepository _userRepository;
-        public RecipeController(IConfiguration config, CookingBookContext context, IRecipeRepository recipeRepository, IMapper mapper, IUserRepository userRepository) : base(userRepository)
-        {
-            _context = context;
-            _config = config;
+        public RecipeController(IRecipeRepository recipeRepository, IMapper mapper, IUserRepository userRepository) : base(userRepository)
+        {     
             _recipeRepository = recipeRepository;
             _mapper = mapper;
             _userRepository = userRepository;
@@ -58,11 +54,12 @@ namespace CookingBook.Web.Controllers.API
             return Ok(response);
         }
 
-        [HttpPost("getrecipesbyname/{name}")]
-        [HttpPost("getrecipesbyname/")]
+        [HttpGet("getrecipesbyname/{name}")]
+        [HttpGet("getrecipesbyname/")]
         public IActionResult GetRecipesByName(string name = "")
-        {            
-            var recipes = _recipeRepository.GetRecipesByName(name);
+        {
+            var activeUser = ActiveUser;
+            var recipes = _recipeRepository.GetRecipesByName(activeUser.Id,name);
             List<RecipeDto> response = new List<RecipeDto>();
             foreach (var recipe in recipes)
             {               

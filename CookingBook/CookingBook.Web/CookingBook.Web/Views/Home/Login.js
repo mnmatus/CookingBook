@@ -4,22 +4,18 @@
     $scope.login = function () {
         $http({
             method: 'POST',
-            url: rootDir + 'api/user/authenticate',
+            url: '/api/user/authenticate',
             data: {
                     UserName: $scope.userName,
                     Password: $scope.password,                
                   },
-        }).then(function (response) {
-            debugger;
+        }).then(function (response) {            
             userToken.set(response.data.token);
-            $window.location.href = rootDir + 'Home/Index';
+            $window.location.href = '/Home/Index';
         }).catch(function (response) {
-            $scope.errorMessage = response.data.error_description;
+            $scope.errorMessage = 'Invalid username and/or password.';
             $scope.password = '';
-            $scope.isNotValid = true;
-            if (response.data.error_description = 'Invalid username and/or password.') {
-                $scope.userName = '';
-            };
+            $scope.isNotValid = true;           
             $scope.frmLogin.$setPristine();
         });
     };
@@ -27,11 +23,10 @@
     $scope.validate = function () {
         $http({
             method: 'POST',
-            url: rootDir + 'api/auth/validate',
-        }).then(function (response) {
-            debugger;
+            url: '/api/auth/validate',
+        }).then(function (response) {            
             if (response.data != "") {
-                $window.location.href = rootDir + 'Home/Index';
+                $window.location.href = '/Home/Index';
             }
         });
     };
@@ -39,11 +34,10 @@
     $scope.validate = function () {
         $http({
             method: 'POST',
-            url: rootDir + 'api/auth/validate',
-        }).then(function (response) {
-            debugger;
+            url: '/api/auth/validate',
+        }).then(function (response) {            
             if (response.data != "") {
-                $window.location.href = rootDir + 'Home/Index';
+                $window.location.href = '/Home/Index';
             }
         });
     };

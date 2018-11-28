@@ -23,8 +23,7 @@
             $http({
                 method: 'GET',
                 url: '/api/recipe/getrecipebyid/' + $scope.recipeId,
-            }).then(function (response) {
-                debugger;
+            }).then(function (response) {                
                 $scope.listIngredients = response.data.ingredients;
             }).catch(function () {
                 $('#modal-error').find('.modal-body').text('Unexpected error encountered');

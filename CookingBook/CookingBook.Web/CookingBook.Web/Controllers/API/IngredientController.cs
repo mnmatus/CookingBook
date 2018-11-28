@@ -28,18 +28,12 @@ namespace CookingBook.Web.Controllers.API
     [Route("api/ingredient")]
     [ApiController]
     public class IngredientController : BaseController
-    {
-        private readonly CookingBookContext _context;
-        private IConfiguration _config;
-        private IIngredientRepository _ingredientRepository;
-        private readonly IMapper _mapper;
+    {        
+        private IIngredientRepository _ingredientRepository;        
         private IUserRepository _userRepository;
-        public IngredientController(IConfiguration config, CookingBookContext context, IIngredientRepository ingredientRepository, IMapper mapper, IUserRepository userRepository) : base(userRepository)
-        {
-            _context = context;
-            _config = config;
-            _ingredientRepository = ingredientRepository;
-            _mapper = mapper;
+        public IngredientController(IIngredientRepository ingredientRepository, IUserRepository userRepository) : base(userRepository)
+        {                        
+            _ingredientRepository = ingredientRepository;            
             _userRepository = userRepository;
         }
 

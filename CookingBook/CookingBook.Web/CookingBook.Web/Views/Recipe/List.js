@@ -9,8 +9,8 @@
     
     $scope.getRecipesByName = function () {        
         $http({
-            method: 'POST',
-            url: rootDir + 'api/recipe/getrecipesbyname/' + $scope.searchName,            
+            method: 'GET',
+            url: '/api/recipe/getrecipesbyname/' + $scope.searchName,            
         }).then(function (response) {            
             $scope.listRecipe = response.data;              
         }).catch(function () {
@@ -26,20 +26,28 @@
     $scope.openEditRecipe = function (id) {
         $http({
             method: 'GET',
-            url: rootDir + 'api/recipe/getrecipebyid/' + id,            
+            url: '/api/recipe/getrecipebyid/' + id,            
         }).then(function (response) {            
             $scope.recipe = response.data;
+            $('#modalFrmRecipe').modal({ backdrop: 'static', keyboard: false })
+            $scope.frmRecipe.$setPristine();
         }).catch(function () {
             $('#modal-error').find('.modal-body').text('Unexpected error encountered');
             $('#modal-error').modal('show');
+            $('#modalFrmRecipe').modal("hide");
         });   
-        $('#modalFrmRecipe').modal({ backdrop: 'static', keyboard: false })
+       
     };  
 
     $scope.updateRecipe = function () {
+        if (!$scope.frmRecipe.$valid) {
+            $scope.validateForm($scope.frmRecipe.$error);
+            return;
+        };
+
         $http({
             method: 'POST',
-            url: rootDir + 'api/recipe/updaterecipe',
+            url: '/api/recipe/updaterecipe',
             data: $scope.recipe,
         }).then(function (response) {
             $('#modalFrmRecipe').modal("hide");
@@ -50,19 +58,25 @@
     };  
 
 
-    $scope.openAddNewRecipe = function () {        
+    $scope.openAddNewRecipe = function () {          
         $scope.recipe = { name: '', ingredients: [] }
         $scope.isNewRecipe = true;
+        $scope.frmRecipe.$setPristine();
         $('#modalFrmRecipe').modal({ backdrop: 'static', keyboard: false })
     };  
 
-    $scope.addNewRecipe = function () {        
+    $scope.addNewRecipe = function () {  
+        if (!$scope.frmRecipe.$valid) {
+            $scope.validateForm($scope.frmRecipe.$error);
+            return;
+        };
         $http({
             method: 'POST',
-            url: rootDir + 'api/recipe/addnewrecipe',
+            url: '/api/recipe/addnewrecipe',
             data: $scope.recipe,
         }).then(function (response) {
-            
+            $scope.listRecipe.push($scope.recipe);
+            $('#modalFrmRecipe').modal("hide");
         }).catch(function () {
             $('#modal-error').find('.modal-body').text('Unexpected error encountered');
             $('#modal-error').modal('show');

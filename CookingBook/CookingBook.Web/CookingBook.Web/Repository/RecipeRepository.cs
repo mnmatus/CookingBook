@@ -18,9 +18,9 @@ namespace CookingBook.Web.Repository
         {
             _context = context;
         }
-        public IQueryable<Recipe> GetRecipesByName(string name)
+        public IQueryable<Recipe> GetRecipesByName(int userId, string name)
         {
-            var recipes = _context.Recipe.Where(r => r.Name.StartsWith(name));
+            var recipes = _context.Recipe.Where(r => r.Name.StartsWith(name) && r.UserId == userId);
             return recipes;
         }
 

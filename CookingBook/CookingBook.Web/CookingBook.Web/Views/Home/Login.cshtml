@@ -8,7 +8,7 @@
 
 
     <div class="col-sm-12 col-md-12 col-xs-12 col-lg-12 text-center" style="display:table-cell; background-color:#f7f2f6; height:100px; vertical-align:middle; ">
-        <img src="~/assets/img/aawLogoLogin2.png" />
+       
     </div>
 
     <div class="col-sm-12">
@@ -24,7 +24,7 @@
             <div style="margin-top:70px;" class="col-sm-6 col-md-8 col-lg-6">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5" style="background-color:#f7f2f6;  height:392px;">
-                        <div class="row text-center " style="background-color:#ac193d; height:58px; color:white; font-size:24px; ">Sign In</div>
+                        <div class="row text-center bg-primary" style="height:58px; color:white; font-size:24px; ">Sign In</div>
                         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top: 40px;">
                             <div>
                                 <span class="input-icon">
@@ -48,24 +48,17 @@
                             <div style="margin-top: 40px;">
                                 <label class="danger">{{systemMessage}}</label>
                                 <input type="button" style="text-transform:uppercase; min-height:44px; font-size: 18px; color:white; background-color:#CA3D3D; border-color:#CA3D3D;" class="btn btn-primary btn-block" ng-click="login()" value="Login">
-                            </div>
-                            <div>
-                                <div class="pull-left">@Html.ActionLink("ForgotPassword", "ForgotPassword", "Home")</div>
-                                <div class="pull-right">@Html.ActionLink("Signup", "SignUp", "Account")</div>
-                                <input value="Validate" type="button" ng-click="validate2()"/>
-
-
-                            </div>
+                            </div>                            
                         </div>
                     </div>
 
                     <div class="visible-md-block bg-white  visible-lg-block">
 
                         <div class="row">
-                            <div class="text-center " style="color:#ac193d; margin-top: 78px; font-size: 30px;">Welcome</div>
-                            <div class="text-center " style="margin-top: 40px; color:#ac193d;  font-size: 30px;">to</div>
-                            <div class="text-center" style="margin-top: 40px;">
-                                <img src="~/assets/img/aawLogoLogin2.png" />
+                            <div class="text-center text-primary" style="margin-top: 78px; font-size: 30px;">Welcome</div>
+                            <div class="text-center text-primary" style="margin-top: 40px; font-size: 30px;">to</div>
+                            <div class="text-center text-primary" style="margin-top: 40px;">
+                                <img src="~/assets/img/TractionTool.png" />
                             </div>
 
                         </div>
@@ -83,7 +76,7 @@
         </div>
     </div>
     <div class="text-center">
-        <label style="margin-top: 20px;">&#169; ActionsAtWork @DateTime.Now.Year</label>
+        <label style="margin-top: 20px;">&#169; CookingBook @DateTime.Now.Year</label>
     </div>
 
 </div>

@@ -26,14 +26,12 @@ namespace CookingBook.Web.Controllers.API
     [Route("api/user")]
     [ApiController]
     public class UserController : BaseController
-    {
-        private readonly CookingBookContext _context;
+    {        
         private IConfiguration _config;
         private IUserRepository _userRepository;
         private readonly IMapper _mapper;
         public UserController(IConfiguration config, IMapper mapper, CookingBookContext context, IUserRepository userRepository) : base(userRepository)
-        {
-            _context = context;
+        {            
             _config = config;
             _mapper = mapper;
             _userRepository = userRepository;
@@ -53,7 +51,7 @@ namespace CookingBook.Web.Controllers.API
         [HttpPost("authenticate")]
         public IActionResult Authenticate(LoginRequestDto request)
         {
-            IActionResult response = Unauthorized();
+            IActionResult response = NotFound();
             var user = _userRepository.GetUserByCredential(request.UserName, request.Password);
             if (user != null)
             {

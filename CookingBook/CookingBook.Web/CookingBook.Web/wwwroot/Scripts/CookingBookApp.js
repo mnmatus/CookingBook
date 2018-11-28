@@ -11,10 +11,9 @@ cookingBookApp.factory('authInterceptorService', ['$q', '$location', '$window', 
             }
             return config;
         }
-        var _responseError = function (rejection) {
-            debugger;
+        var _responseError = function (rejection) {            
             if (rejection.status === 401) {
-                $window.location.href = rootDir + 'Home/Login';
+                $window.location.href = '/Home/Login';
 
             }
             return $q.reject(rejection);
@@ -81,7 +80,7 @@ cookingBookApp.controller('applicationController', function ($rootScope, $scope,
 
     $scope.logOut = function () {
         userToken.clear();
-        $window.location.href = rootDir + 'Home/Login';
+        $window.location.href = '/Home/Login';
     };
 
     $scope.validateForm = function (form_error_object) {

@@ -10,7 +10,7 @@ namespace CookingBook.Web.IRepository
     public interface IRecipeRepository
     {
         Recipe GetRecipeById(int id);
-        IQueryable<Recipe> GetRecipesByName(string name);
+        IQueryable<Recipe> GetRecipesByName(int userId, string name);
 
         IQueryable<Recipe> GetRecipesByUser(int id);
 
